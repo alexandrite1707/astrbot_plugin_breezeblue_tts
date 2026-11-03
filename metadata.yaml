@@ -1,0 +1,18 @@
+name: astrbot_plugin_breezeblue_tts
+display_name: BreezeBlue 语音
+short_desc: 用 BreezeBlue 把回复变成她的声音
+desc: |
+  将 AstrBot 的文字回复通过 BreezeBlue TTS 合成为语音，并作为 QQ 语音发送。
+  支持按人格映射不同声音、语气指令、纯语音或文字加语音、以及管理员语音测试命令。
+  需要自备 BreezeBlue API Key 和 voice_id。
+version: 0.2.0
+author: DSH
+repo: https://github.com/alexandrite1707/astrbot_plugin_breezeblue_tts
+astrbot_version: ">=4.24.0"
+support_platforms:
+  - aiocqhttp
+tags:
+  - TTS
+  - 语音
+  - BreezeBlue
+  - 拟人

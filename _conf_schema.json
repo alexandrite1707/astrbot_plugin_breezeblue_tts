@@ -1,0 +1,126 @@
+{
+  "enabled": {
+    "description": "启用 BreezeBlue 语音回复",
+    "type": "bool",
+    "default": true
+  },
+  "api_key": {
+    "description": "BreezeBlue API Key",
+    "type": "string",
+    "default": "",
+    "hint": "在 https://breezeblue.ai/app/developer 创建，通常以 brz_ 开头。留空时插件只跳过语音，不影响文字聊天。"
+  },
+  "base_url": {
+    "description": "BreezeBlue API 地址",
+    "type": "string",
+    "default": "https://api.breeze.blue",
+    "hint": "一般不需要改。"
+  },
+  "voice_id": {
+    "description": "默认声音 ID",
+    "type": "string",
+    "default": "",
+    "hint": "形如 voc_xxxx。可在 BreezeBlue 控制台或 /v1/voices 接口获取。"
+  },
+  "model_id": {
+    "description": "TTS 模型",
+    "type": "string",
+    "default": "breeze-tts-2",
+    "hint": "中文一般用 breeze-tts-2；多语言可用 breeze-tts-2-multilingual。"
+  },
+  "language_code": {
+    "description": "语言代码",
+    "type": "string",
+    "default": "zh",
+    "hint": "中文填 zh；留空则由 BreezeBlue 自动判断。"
+  },
+  "output_format": {
+    "description": "音频输出格式",
+    "type": "string",
+    "default": "mp3",
+    "hint": "支持 mp3、wav、flac、aac、opus 等；QQ 语音通常用 mp3 最方便。"
+  },
+  "instructions": {
+    "description": "默认语气指令",
+    "type": "text",
+    "default": "用自然、温柔、略带亲密的语气说这句话，不要像新闻播报。",
+    "hint": "BreezeBlue 的 instructions，用文字描述语气、情绪和说话方式。"
+  },
+  "guidance_scale": {
+    "description": "语气遵循强度",
+    "type": "float",
+    "default": 4.0,
+    "hint": "1-10，数值越高越贴近 instructions；4 左右比较自然。"
+  },
+  "send_mode": {
+    "description": "发送方式",
+    "type": "string",
+    "default": "text_and_voice",
+    "hint": "text_and_voice：文字加语音；voice_only：只发语音。"
+  },
+  "probability": {
+    "description": "语音发送概率（%）",
+    "type": "int",
+    "default": 100,
+    "hint": "100 表示每条纯文本回复都尝试合成语音；低于 100 会随机跳过。"
+  },
+  "min_chars": {
+    "description": "最短触发字数",
+    "type": "int",
+    "default": 1,
+    "hint": "回复短于这个字数时不合成语音。"
+  },
+  "max_chars": {
+    "description": "最长合成字数",
+    "type": "int",
+    "default": 500,
+    "hint": "超长回复会在句末截断后再合成，避免一次请求过长。"
+  },
+  "timeout": {
+    "description": "TTS 请求超时（秒）",
+    "type": "int",
+    "default": 120
+  },
+  "clean_markdown": {
+    "description": "清理 Markdown 和链接",
+    "type": "bool",
+    "default": true,
+    "hint": "避免把 **、代码块、URL 念出来。"
+  },
+  "strip_emoji": {
+    "description": "移除 emoji",
+    "type": "bool",
+    "default": true,
+    "hint": "避免 TTS 把 emoji 念成奇怪的名字。"
+  },
+  "skip_commands": {
+    "description": "命令回复不转语音",
+    "type": "bool",
+    "default": true,
+    "hint": "用户发送 / 开头的指令时，插件不把指令结果转成语音。"
+  },
+  "default_profile": {
+    "description": "默认声音配置名",
+    "type": "string",
+    "default": "default",
+    "hint": "对应 voice_profiles 里的键；没有匹配人格或会话选择时使用。"
+  },
+  "enable_mood_tool": {
+    "description": "启用按情绪切换声音的 LLM 工具",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后模型可以调用 breezeblue_list_voices 和 breezeblue_switch_voice，按对话情绪切换声音配置。"
+  },
+  "voice_profiles": {
+    "description": "声音配置表（JSON）",
+    "type": "text",
+    "default": "{}",
+    "hint": "示例：{\"default\":{\"voice_id\":\"voc_xxx\",\"description\":\"平静\",\"instructions\":\"温柔、平静\"},\"撒娇\":{\"voice_id\":\"voc_yyy\",\"description\":\"撒娇\",\"instructions\":\"撒娇、语速慢\"}}"
+  },
+  "persona_profiles": {
+    "description": "人格到声音配置的映射（JSON）",
+    "type": "text",
+    "default": "{}",
+    "hint": "示例：{\"甜美鲸鱼\":\"撒娇\",\"小鲸鱼\":\"default\"}。填了以后不同人格自动使用不同声音。"
+  }
+}
